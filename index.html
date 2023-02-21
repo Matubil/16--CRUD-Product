@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,51 +9,70 @@
 
     <link rel="stylesheet" href="/css/styles.css">
 </head>
+
 <body>
     <h1>Objects - methods</h1>
-    <form id="add-product">
-        <div class="input-box">
-            <label for="name">Producto</label>
-            <input type="text" name="name" id="">
-        </div>
-    </form>
+    <div class="container">
+        <form id="add-product" class="product-form" onsubmit="addProduct(event)">
+            <!--le vamos a mandar el evento porque va a llevar el formulario con lo que tengan cargados los inputs-->
+            <div class="input-box">
+                <label for="nameLabel">Producto</label>
+                <input type="text" name="name" id="namLabel" required>
+                <!--le colocó value y texto a la descripcion para que cuando tenga que cargar productos, no sea tan tedioso de ir cargando 1 x 1-->
+            </div>
+            <div class="input-box">
+                <label for="descLabel">Descripcion</label>
+                <textarea name="description" id="descLabel" rows="5"
+                    required></textarea>
+            </div>
+            <div class="input-box">
+                <label for="priceLabel">Precio</label>
+                <input type="number" name="price" id="priceLabel" required >
+            </div>
+            <div class="input-box">
+                <label for="imgLabel">Imagen</label>
+                <input type="url" name="image" id="imgLabel" required
+                    value="https://cloudfront-us-east-1.images.arcpublishing.com/infobae/TVULFPUK4VHBBPNHF2Z2WTFJPI.jpg">
+                <!--Comunmente se usa que el nombre sea igual que el id, pero para que sepamos que no depende el id del nombre, sino que el nombre que los que tienen label es para saber que van vinculados entre ellos-->
+            </div>
+            <div class="input-box">
+                <label for="stockLabel">Stock</label>
+                <input type="checkbox" name="stock" id="stockLabel">
+            </div>
+            <div class="input-box">
+                <label for="joystickLabel">Joystick</label>
+                <input type="checkbox" name="joystick" id="joystickLabel">
+            </div>
+            <div class="input-box">
+                <select name="gamesPicker" id="games">
+                    <option value="" selected></option>
+                    <option value="god_of_war">God of War</option>
+                    <option value="sonic">Sonic</option>
+                    <option value="mario_bros">Mario Bros</option>
+                    <option value="uncharted">Uncharted</option>
+                </select>
+            </div>
+            <button type="submit">Cargar Producto</button>
+        </form>
 
-    <table class="table-product">
-        <thead>
-            <tr>
-                <th>Imagen</th>
-                <th>Producto</th>
-                <th>Descripcion</th>
-                <th>Precio</th>
-                <th>Accesorios</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody id="table-body">
-            <tr>
-                <td>
-                    <img src="https://i0.wp.com/imgs.hipertextual.com/wp-content/uploads/2022/08/portada-ps5-scaled-1.jpeg?fit=2560%2c1707&quality=55&strip=all&ssl=1" width="120px" alt="">                    
-                </td>
-                <td>
-                    LAPTOP
-                </td>
-                <td>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Culpa quidem dolorem reprehenderit, atque laborum aperiam.
-                </td>
-                <td>
-                    $ 150000
-                </td>
-                <td>
-                    📦🎮
-                </td>
-                <td>
-                    🟥✏️⭐
-                </td>
-            </tr>
-        </tbody>
-    </table>
+        <table class="table-product">
+            <thead>
+                <tr>
+                    <th>Imagen</th>
+                    <th>Producto</th>
+                    <th>Descripcion</th>
+                    <th>Precio</th>
+                    <th>Accesorios</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="table-body">
 
+            </tbody>
+        </table>
+    </div>
     <!-- <script src="/js/object.js"></script> -->
-    <script src="/js/object-exercise.js"></script> 
+    <script src="/js/object-exercise.js"></script>
 </body>
+
 </html>
