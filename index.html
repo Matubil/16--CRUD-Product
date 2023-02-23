@@ -7,6 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Objects - methods</title>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 
@@ -22,12 +25,11 @@
             </div>
             <div class="input-box">
                 <label for="descLabel">Descripcion</label>
-                <textarea name="description" id="descLabel" rows="5"
-                    required></textarea>
+                <textarea name="description" id="descLabel" rows="5" required></textarea>
             </div>
             <div class="input-box">
                 <label for="priceLabel">Precio</label>
-                <input type="number" name="price" id="priceLabel" required >
+                <input type="number" name="price" id="priceLabel" required>
             </div>
             <div class="input-box">
                 <label for="imgLabel">Imagen</label>
@@ -54,23 +56,26 @@
             </div>
             <button type="submit">Cargar Producto</button>
         </form>
+        <div class="table-container">
+            <table class="table-product">
+                <thead>
+                    <tr>
+                        <th>Imagen</th>
+                        <th>Producto</th>
+                        <th>Descripcion</th>
+                        <th>Precio</th>
+                        <th>Accesorios</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body">
 
-        <table class="table-product">
-            <thead>
-                <tr>
-                    <th>Imagen</th>
-                    <th>Producto</th>
-                    <th>Descripcion</th>
-                    <th>Precio</th>
-                    <th>Accesorios</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody id="table-body">
-
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
     </div>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
     <!-- <script src="/js/object.js"></script> -->
     <script src="/js/object-exercise.js"></script>
 </body>

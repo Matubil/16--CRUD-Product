@@ -55,6 +55,13 @@ const Products = [
     }
 ]; 
 
+// swal({
+//     title: 'Bienvenido a SweetAlert',
+//     text: 'Este modal o dialogo es provisto por la libreria SweetAlert',
+//     icon: 'info', //creemos que en sweetAlert2 se usa type en vez de icon dijo
+//     className: ''
+// });
+
 //Obtener el body de la tabla para poder modificarlo desde JS
 const tableBody = document.getElementById('table-body')
 // const tableBody = document.querySelector('#table-body') tambien se puede usar este metodo
@@ -89,10 +96,19 @@ function renderizarTabla(){
                                     $ ${producto.price}
                                 </td>
                                 <td class= "product__other">
-                                    📦🎮
+                                    <i class="fa-solid fa-box"></i>
+                                    <i class="fa-solid fa-gamepad"></i>
                                 </td>
                                 <td class= "product__actions">
-                                    🟥✏️⭐
+                                    <button class="product__action-btn">
+                                        <i class="fa-solid fa-trash-can"></i>
+                                    </button>
+                                    <button class="product__action-btn btn-edit">
+                                        <i class="fa-solid fa-pencil"></i>
+                                    </button>
+                                    <button class="product__action-btn btn-favorite">
+                                        <i class="fa-regular fa-star"></i>
+                                    </button>
                                 </td>
                             </tr>`
 

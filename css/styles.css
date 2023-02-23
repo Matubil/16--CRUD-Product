@@ -1,5 +1,16 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: Helvetica, sans-serif;
+}
+
 .container {
     display: flex;
+    flex-direction: column;
 }
 
 .product-form {
@@ -8,6 +19,11 @@
 }
 .product-form > div {
     margin-bottom: 1rem;
+}
+
+.table-container{
+    width: 100vw;
+    overflow-x: scroll;
 }
 
 .table-product {
@@ -21,21 +37,22 @@
 }
 .table-product th, .table-product td {
     border: 1px solid skyblue;
+    font-size: .75rem;
 }
 
 .table-product tr td:not(:first-child) {
-    padding: 1rem;
+    padding: .5rem;
 }
 .table-product tbody tr:nth-child(odd) {
     background-color: rgb(236, 250, 255);
 }
 .table-product tr th {
-    padding: 1rem 2rem;
+    padding: .5rem;
 }
 .product__img {
-    width: 70px;
+    width: 50px;
     object-fit: cover;
-    height: 70px;
+    height: 50px;
     border-radius: 50%;
     display: block;
     margin: 0 auto;
@@ -46,9 +63,75 @@
 .product__price {
     font-weight: bold;
 }
-.product__others, .product__actions {
+.product__other, .product__actions {
     vertical-align: center;
     text-align: center;
     font-size: 1.5rem;
 }
 
+.product__action-btn {
+    background-color: rgb(254, 33, 33);
+    border: none;
+    padding: 0.25rem;
+    border-radius: 2px;
+    color: white;
+}
+
+.product__action-btn:hover {
+    background-color: rgb(199, 1, 1);
+}
+.product__action-btn {
+    background-color: rgb(254, 33, 33);
+    border: none;
+    padding: 0.25rem;
+    border-radius: 2px;
+    color: white;
+}
+
+.product__action-btn:hover {
+    background-color: rgb(199, 1, 1);
+}
+
+/* .product__action-btn--edit { //asi es como deberia de quedar para sass
+    background-color: rgb(73, 162, 250); 
+}
+.product__action-btn--edit:hover {
+    background-color: rgb(8, 131, 255); 
+}
+
+.product__action-btn--favorite {
+    background-color: rgb(253, 247, 230); 
+}
+.product__action-btn--favorite:hover {
+    background-color: rgb(247, 217, 155); 
+} */
+
+.btn-edit {
+    background-color: rgb(73, 162, 250); 
+}
+.btn-edit:hover {
+    background-color: rgb(8, 131, 255); 
+}
+
+.btn-favorite {
+    background-color: rgb(253, 247, 230); 
+}
+.btn-favorite:hover {
+    background-color: rgb(247, 217, 155); 
+}
+
+@media screen and (min-width: 1000px){
+    .container{
+        flex-direction: row;
+    }
+    .table-container{
+        overflow-x: auto;
+    }
+}
+/* .red-bg .swal-title{ esto es por si queremos modificar algunas cosas de la ventana que salta
+    color: red
+} 
+
+.swal-modal {
+    background-color: #333;
+}  */
