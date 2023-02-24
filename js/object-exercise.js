@@ -70,7 +70,7 @@ const tableBody = document.getElementById('table-body')
 function renderizarTabla(){
     //iterar el array para acceder a cada producto
     tableBody.innerHTML = "" //lo que hace esto o para lo que está es para que cada vez que se cargue la funcion, se borre toda la tabla
-    Products.forEach((producto) =>{    
+    Products.forEach((producto, index) =>{    
         let imageSrc = '/assets/images/no-product.png'; //se declara esto para que cuando no haya una imagen, se cargue esa imagen por defecto
         if(producto.image){ //esta es una de las formas de preguntar si tiene un valor 
             imageSrc = producto.image;       
@@ -95,12 +95,16 @@ function renderizarTabla(){
                                 <td class= "product__price">
                                     $ ${producto.price}
                                 </td>
-                                <td class= "product__other">
-                                    <i class="fa-solid fa-box"></i>
-                                    <i class="fa-solid fa-gamepad"></i>
+                                <td class= "product__info">
+                                    <span class="product__info-icon ${producto.stock ? '' : 'disabled'}" >
+                                        📦
+                                    </span>
+                                    <span class="product__info-icon ${producto.jostick ? '' : 'disabled'}" >
+                                        🎮
+                                    </span>                                    
                                 </td>
                                 <td class= "product__actions">
-                                    <button class="product__action-btn">
+                                    <button class="product__action-btn" onclick="deleteProduct(${index})"> 
                                         <i class="fa-solid fa-trash-can"></i>
                                     </button>
                                     <button class="product__action-btn btn-edit">
@@ -163,6 +167,10 @@ function addProduct(evt){
     elements.name.focus(); //esta tambien le deja el focus del puntero ahi en el elemento name de la tabla
 }
 
+function deleteProduct(id){
+    Products.splice(id, 1)//el primero es el index que es, a partir de donde empieza a robar y despues va la cantidad de elementos a borrar
+    renderizarTabla()    
+}
 /*
 <tr>
     <td>

@@ -63,10 +63,20 @@ body{
 .product__price {
     font-weight: bold;
 }
-.product__other, .product__actions {
+.product__info, .product__actions {
     vertical-align: center;
     text-align: center;
     font-size: 1.5rem;
+}
+
+.product__info{
+    font-size: 1.25rem !important;
+}
+
+.product__info-icon.disabled{
+    filter: grayscale(1);
+    opacity: .5;
+    pointer-events: none; /*no escuchas ninguno de los eventos, de hover, click, etc*/
 }
 
 .product__action-btn {
