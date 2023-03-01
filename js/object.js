@@ -20,7 +20,7 @@ const Products = [
         price: 70000,
         stock: false,
         image: 'https://live.mrf.io/statics/i/ps/www.muycomputer.com/wp-content/uploads/2019/07/PS4-PS5.jpg',
-        jostick: true,
+        joystick: true,
         games: ['Uncharted 3']
     },
 
@@ -37,7 +37,7 @@ const Products = [
         stock: true,
         image: 'https://www.atajo.com.ar/images/0000000RRT-0000234357RRT-00002-Consola-Xbox-Series-X-01.jpg',
         games: ['Halo Infinite'],
-        jostick: true,
+        joystick: true,
 
     },
     {
@@ -62,7 +62,7 @@ const game = {
     price: 70000,
     stock: false,
     image: 'https://live.mrf.io/statics/i/ps/www.muycomputer.com/wp-content/uploads/2019/07/PS4-PS5.jpg',
-    jostick: true,
+    joystick: true,
     games: ['Uncharted 3']
 };
 

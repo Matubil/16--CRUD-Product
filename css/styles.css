@@ -21,6 +21,18 @@ body{
     margin-bottom: 1rem;
 }
 
+.submit-btn{
+    padding: .5rem 1rem;
+    border: 1px solid greenyellow;
+    color: white;
+    background-color: green;
+}
+
+.edit-btn{
+    background-color: dodgerblue;
+    border-color: skyblue;
+}
+
 .table-container{
     width: 100vw;
     overflow-x: scroll;

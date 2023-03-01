@@ -5,8 +5,8 @@ const Products = [
         price: 290000,
         stock: true,
         image: 'https://as.com/meristation/imagenes/2020/11/06/reportajes/1604654372_894608_1604656126_noticia_normal.jpg',
-        games: ['God of War Origin']
-    },
+        games: { viewValue: 'God of War Origin', value: 'gow_origin'},
+    }
     {
         name: 'PS4',
         description: 'La consola anterior de Sony',
@@ -20,8 +20,8 @@ const Products = [
         price: 70000,
         stock: false,
         image: 'https://live.mrf.io/statics/i/ps/www.muycomputer.com/wp-content/uploads/2019/07/PS4-PS5.jpg',
-        jostick: true,
-        games: ['Uncharted 3']
+        joystick: true,
+        games: { viewValue: 'Uncharted 3', value: 'uncharted_3'},
     },
     {
         name: 'PS2',
@@ -35,8 +35,8 @@ const Products = [
         price: 279000,
         stock: true,
         image: 'https://www.atajo.com.ar/images/0000000RRT-0000234357RRT-00002-Consola-Xbox-Series-X-01.jpg',
-        games: ['Halo Infinite'],
-        jostick: true,
+        games: { viewValue: 'Halo Infinite', value: 'halo_infinite'},
+        joystick: true,
 
     },
     {
@@ -55,6 +55,27 @@ const Products = [
     }
 ]; 
 
+// const editButtons = document.querySelectorAll('.btn-edit') //le estoy diciendo que busque todos los botones que tengan ese btn-edit de clase *1
+
+
+/*      
+?#2
+!Se recomienda usas listeners en vez de los call que usamos nosotros en html como onsubmit, onclick, etc, y declarando una funcion, ya que podemos hacer tood en el addlistener, sin tener que ir declarando cada cosa por separado, incluso en el addevenlistener de abajo podriamos haber puesto el addProduct o el deleteProduct, sin declararlo, osea haciendolo todo en la misma linea, quedaria algo tal que asi 
+productForm.addEventListener('click', function deleteProduct(id){
+    Products.splice(id, 1)//el primero es el index que es, a partir de donde empieza a robar y despues va la cantidad de elementos a borrar
+    
+    renderizarTabla()    
+
+})
+*/
+const productForm = document.getElementById('add-product')//Se puede escuchar eventos sin necesidad de poner el onsubmit en el html, siempre que los almacene en una variable, en el html voy a dejar eso escrito como deberia de estar y como está ahora es como dejó explicado el profesor *2
+productForm.addEventListener('click', () => {
+    console.dir(productForm.dataset) //un dataset es un conjunto de propiedad que yo puedo definir y puedo leer sobre mi HTML la propiedad custom
+}) /* se lo pone a escuchar cierto evento, puede ser un click u otra cosa *2 */
+
+// productForm.addEventListener('mouseover', () => {}
+const submitBtn = document.getElementById('submit-btn') //?   #4
+
 // swal({
 //     title: 'Bienvenido a SweetAlert',
 //     text: 'Este modal o dialogo es provisto por la libreria SweetAlert',
@@ -66,6 +87,8 @@ const Products = [
 const tableBody = document.getElementById('table-body')
 // const tableBody = document.querySelector('#table-body') tambien se puede usar este metodo
 
+let editIndex; //?      #3
+
 //definir una funcion para iterar el array
 function renderizarTabla(){
     //iterar el array para acceder a cada producto
@@ -76,7 +99,7 @@ function renderizarTabla(){
             imageSrc = producto.image;       
         }
 
-        //!! let imageSrc = producto.image ? producto.image : '/assets/images/no-product.png'; esta seria tora forma de preguntar el let y el if, con el operador ternario
+        //!! let imageSrc = producto.image ? producto.image : '/assets/images/no-product.png'; esta seria otra forma de preguntar el let y el if, con el operador ternario
         //otra foram de preguntar seria:
         /* if('image' in producto)
         otra seria
@@ -99,7 +122,7 @@ function renderizarTabla(){
                                     <span class="product__info-icon ${producto.stock ? '' : 'disabled'}" >
                                         📦
                                     </span>
-                                    <span class="product__info-icon ${producto.jostick ? '' : 'disabled'}" >
+                                    <span class="product__info-icon ${producto.joystick ? '' : 'disabled'}" >
                                         🎮
                                     </span>                                    
                                 </td>
@@ -107,7 +130,44 @@ function renderizarTabla(){
                                     <button class="product__action-btn" onclick="deleteProduct(${index})"> 
                                         <i class="fa-solid fa-trash-can"></i>
                                     </button>
-                                    <button class="product__action-btn btn-edit">
+                                    <button class="product__action-btn btn-edit" onclick="editProduct(${index})">
+                                        <i class="fa-solid fa-pencil"></i>
+                                    </button>
+                                    <button class="product__action-btn btn-favorite" onclick="setFavoriteProduct(${index})">
+                                        <i class="fa-regular fa-star"></i>
+                                    </button>
+                                </td>
+                            </tr>`
+
+/* 
+                            ?#2
+                                    const tableRow = `
+                            <tr class="product">
+                                <td class="product__img-cell">
+                                    <img class= "product__img" src="${imageSrc}" width="120px" alt="${producto.name}">                    
+                                </td>
+                                <td class= "product__name">
+                                    ${producto.name}
+                                </td>
+                                <td class= "product__desc">
+                                    ${producto.description}    
+                                </td>
+                                <td class= "product__price">
+                                    $ ${producto.price}
+                                </td>
+                                <td class= "product__info">
+                                    <span class="product__info-icon ${producto.stock ? '' : 'disabled'}" >
+                                        📦
+                                    </span>
+                                    <span class="product__info-icon ${producto.joystick ? '' : 'disabled'}" >
+                                        🎮
+                                    </span>                                    
+                                </td>
+                                <td class= "product__actions">
+                                    <button class="product__action-btn" onclick="deleteProduct(${index})"> 
+                                        <i class="fa-solid fa-trash-can"></i>
+                                    </button>
+                                    <button class="product__action-btn btn-edit" data-indice="${index}" onclick="editProduct(${index})">
                                         <i class="fa-solid fa-pencil"></i>
                                     </button>
                                     <button class="product__action-btn btn-favorite">
@@ -115,11 +175,15 @@ function renderizarTabla(){
                                     </button>
                                 </td>
                             </tr>`
-
+*/
+        //data-index / data-indice sirve para darle un indice a cada boton *1
                             tableBody.innerHTML += tableRow
         //Introducir dentro del tbody una fila por producto con sus respectivas celdas
+        
+    // console.log(editButtons) *1
     })
 }
+
 
 renderizarTabla()
 
@@ -156,7 +220,16 @@ function addProduct(evt){
 
     console.log(newProduct)
 
-    Products.push(newProduct)//lo que estamos haciendo es cargar nuestro producto en la lista de productos
+    if(editIndex >= 0){//! #3 se le pone editIndex >= 0 ya que el primero puede ingresar con 0 y un if(0) va a dar false entonces para que de true ponemos eso 
+        Products[editIndex] = newProduct
+    } else{
+        Products.push(newProduct)//lo que estamos haciendo es cargar nuestro producto en la lista de productos
+    }
+    editIndex = undefined //esto se lo declara para que no quede el id del que modificamos porque sino no vamos a poder editar otros
+    // Products.push(newProduct)//lo que estamos haciendo es cargar nuestro producto en la lista de productos
+
+    submitBtn.classList.remove('edit-btn') //le quita la clase al boton que le agregamos cuando lo editamos y si no existe no hace nada, tambien se puede preguntar, contains en vez de remove: nos va a indicar si contiene o no esa clase, va a ser un booleano; tambien esta toggle: es si no tiene la clase se la agrega y si la tiene se la quita
+    submitBtn.innerText = 'Cargar Producto'
 
     console.log(Products)
 
@@ -169,8 +242,55 @@ function addProduct(evt){
 
 function deleteProduct(id){
     Products.splice(id, 1)//el primero es el index que es, a partir de donde empieza a robar y despues va la cantidad de elementos a borrar
+    
+    //el slice(id, 6) va desde id hasta el anterior al 6, ya que toma la porcion sin incluir el nro que esta a la derecha, y si ponemos slice(6,6) ahi no va a pasar nada, ya que el 6 no va a estar incluido
+    
     renderizarTabla()    
+
 }
+
+// function editProduct(id){
+//     let product = Products[id];
+//     console.log(id, product)
+// }
+
+function editProduct(id){           //?     #3
+
+    submitBtn.classList.add('edit-btn') //le agrega una clase al boton para que tome los estilos del css
+    submitBtn.innerText = 'Modificar Producto' //va a cambiar lo que dice el boton
+
+    let product = Products[id];
+    console.table(product)
+    const el = productForm.elements;
+    el.name.value = product.name
+    el.description.value = product.description
+    el.price.value = product.price
+    el.image.value = product.image
+    el.stock.checked = product.stock
+    el.joystick.checked = product.joystick
+    
+    // Esta  es otra forma de hacer lo mismo  
+    //Object.keys(product).forEach((key) => {
+    // console.log(typeof product[key]) // esto lo que hace, es imprimirte el tipo de variable de cada una de las keys, o elementos del product
+    //     if(typeof product[key] === "boolean") return el[key].cheked = product[key]
+    //     el[key].value = product[key]
+    // })
+
+    editIndex = id; //esta declarado arriba de renderizarTabla y se hace para que podamos traernos el id del que estamos editando para mas tarde que se termine de modificar
+}
+
+//los id no necesariamente tienen que tener el mismo nombre, lo estoy haciendo asi porque quiero pero se podria mandar otro nombre
+function setFavoriteProduct(id){ //?  #5
+    
+    //llamar a la funcion desde el boton favoritos
+
+
+    //checkear si en el array productos hay algun producto cuyo indice sea distinto al elegido con la propiedad favorite: true tenmos que setearla en falso
+
+
+    //setear el producto elegido como favorite: true
+}
+
 /*
 <tr>
     <td>
