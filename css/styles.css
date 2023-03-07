@@ -138,6 +138,10 @@ body{
 .btn-favorite {
     background-color: rgb(253, 247, 230); 
 }
+
+.btn-favorite.active {
+    background-color: rgb(253, 198, 36); 
+}
 .btn-favorite:hover {
     background-color: rgb(247, 217, 155); 
 }
